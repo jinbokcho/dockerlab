@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:1.0
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role != manager]
+    volumes:
+     - nginx_vol:/usr/share/nginx/html
+    ports:
+      - "8888:80"
+    networks:
+      - nginx_net
+      
+networks:
+  nginx_net:
+    driver:overlay
+    attackable: true
+
+volumes:
+  nginx_vol:
+    driver: local
+    driver_opts:
+      type: "nfs4"
+      o: "addr=211.183.3.200,rw"
+      device: ":/nginx"

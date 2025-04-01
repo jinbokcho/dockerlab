@@ -17,7 +17,7 @@ services:
 networks:
   nginx_net:
     driver:overlay
-    attackable: true
+    attachable: true
 
 volumes:
   nginx_vol:

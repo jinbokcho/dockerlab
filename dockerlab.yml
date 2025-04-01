@@ -16,7 +16,7 @@ services:
       
 networks:
   nginx_net:
-    driver:overlay
+    driver: overlay
     attachable: true
 
 volumes:
